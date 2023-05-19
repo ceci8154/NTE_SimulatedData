@@ -1,0 +1,136 @@
+# ########################################################### #
+# Pyxel detector simulation framework                         #
+#                                                             #
+# Example YAML configuration file                             #
+# HxRG generic pipeline                                       #                         
+# ########################################################### #
+
+
+# yaml-language-server: $schema=https://esa.gitlab.io/pyxel/doc/latest/pyxel_schema.json
+exposure:
+
+  readout:
+    times: [2]
+    non_destructive:  false
+
+  outputs:
+    output_folder: "Output/Pyxel_runs"
+    save_data_to_file:      
+      
+cmos_detector:
+
+  geometry:
+
+    row: 2048               # pixel
+    col: 2048               # pixel
+    total_thickness: 40.    # um
+    pixel_vert_size: 18.    # um
+    pixel_horz_size: 18.    # um
+
+  environment:
+    temperature: 100        # K
+
+  characteristics:
+    quantum_efficiency: 1                # -
+    charge_to_volt_conversion: 3.0e-6      # V/e
+    pre_amplification: 100                 # V/V
+    adc_bit_resolution: 16
+    adc_voltage_range: [0.,6.]
+    full_well_capacity: 80000              # e
+
+pipeline:
+  # -> photon
+  photon_collection:
+    - name: load_image
+      func: pyxel.models.photon_collection.load_image
+      enabled: true
+      arguments:
+        image_file: "NTEsim/ir_pyxel_im.fits"
+        convert_to_photons: false
+        align: "center"
+        bit_resolution: 64
+        
+    - name: illumination
+      func: pyxel.models.photon_collection.illumination
+      enabled: true
+      arguments:
+          level: 5000
+
+  # photon -> charge
+  charge_generation:
+      
+    - name: cosmix
+      func: pyxel.models.charge_generation.cosmix
+      enabled: true
+      arguments:
+        simulation_mode: cosmic_ray
+        running_mode: stepsize
+        particle_type: proton
+        initial_energy: 0.1          # MeV
+        particles_per_second: 3
+        incident_angles:
+        starting_position:
+        spectrum_file:   'NTEsim/proton_L2_solarMax_11mm_Shielding.txt'
+        progressbar: true
+
+  # charge -> pixel
+  charge_collection:
+    - name: simple_collection
+      func: pyxel.models.charge_collection.simple_collection
+      enabled: true
+
+    - name: full_well
+      func: pyxel.models.charge_collection.simple_full_well
+      enabled: true
+
+    - name: simple_ipc
+      func: pyxel.models.charge_collection.simple_ipc
+      enabled: true
+      arguments:
+        coupling: 0.1
+        diagonal_coupling: 0.05
+        anisotropic_coupling: 0.03
+
+  # pixel -> pixel
+  charge_transfer:
+
+  # pixel -> signal
+  charge_measurement:
+    - name: nghxrg
+      func: pyxel.models.charge_measurement.nghxrg
+      enabled: true
+      arguments:
+        noise:
+          - white_read_noise:
+              rd_noise: 0 #5.2
+              ref_pixel_noise_ratio: 0.8
+          - corr_pink_noise:
+              c_pink: 0 #70.
+          - uncorr_pink_noise:
+              u_pink: 0 #70.
+          - acn_noise:
+              acn: 0 #70.
+          - pca_zero_noise:
+              pca0_amp: 0.2
+        window_position: [0, 0]   # Optional
+        window_size: [2048, 2048]   # Optional
+        n_output: 4
+        n_row_overhead: 12
+        n_frame_overhead: 1
+        reverse_scan_direction: False
+        reference_pixel_border_width: 4
+  
+    - name: simple_measurement
+      func: pyxel.models.charge_measurement.simple_measurement
+      enabled: true
+
+  # signal -> image
+  readout_electronics:
+      
+    - name: simple_amplifier
+      func: pyxel.models.readout_electronics.simple_amplifier
+      enabled: true
+      
+    - name: simple_adc
+      func: pyxel.models.readout_electronics.simple_adc
+      enabled: true

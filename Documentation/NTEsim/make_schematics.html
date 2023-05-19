@@ -1,0 +1,4541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>NTEsim.make_schematics API documentation</title>
+<meta name="description" content="Written by Cecilie and Mads.
+This package makes all the schematics for the NTEpyechelle simulator …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>NTEsim.make_schematics</code></h1>
+</header>
+<section id="section-intro">
+<p>Written by Cecilie and Mads.
+This package makes all the schematics for the NTEpyechelle simulator.</p>
+<p>The package can make the following schematics:</p>
+<pre><code>- Bias
+
+- Flat
+
+- Mercury lamp
+
+- Etalon
+
+- Trace
+
+- Sky lines
+
+- Science - at the moment it is only one GRB spectrum
+
+- AB - uses the same GRB spectrum and does an AB setup
+</code></pre>
+<p>Keep in mind that this code will be incredibly slow without a GPU.
+Additionaly it only works with CUDA, as pyechelle uses Numba.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;
+Written by Cecilie and Mads.
+This package makes all the schematics for the NTEpyechelle simulator.
+
+The package can make the following schematics:
+    
+    - Bias
+
+    - Flat
+
+    - Mercury lamp
+
+    - Etalon
+
+    - Trace
+
+    - Sky lines
+
+    - Science - at the moment it is only one GRB spectrum
+
+    - AB - uses the same GRB spectrum and does an AB setup
+
+
+Keep in mind that this code will be incredibly slow without a GPU.
+Additionaly it only works with CUDA, as pyechelle uses Numba.
+&#39;&#39;&#39;
+
+from NTEpyechelle.efficiency import CSVEfficiency
+from NTEpyechelle.spectrograph import ZEMAX
+from NTEpyechelle.simulator import Simulator
+from NTEpyechelle.sources import Constant, LineList, CSV
+import os
+import numpy as np
+from astropy import units as u
+import h5py
+
+
+class MakeSchematics:
+    &#39;&#39;&#39;
+    Class to contain all functions and variables needed to make the simulations.
+    &#39;&#39;&#39;
+    def __init__(self):
+        self.gpu = True
+        self.fiber = 3
+        em_eff = CSVEfficiency(&#39;EM_eff&#39;, &#39;data/efficiency/em_eff.csv&#39;)
+        skipper_eff = CSVEfficiency(&#39;Skipper_eff&#39;, &#39;data/efficiency/skipper_eff.csv&#39;)
+        h2rg_eff = CSVEfficiency(&#39;H2RG_eff&#39;, &#39;data/efficiency/h2rg_eff.csv&#39;)
+        self.efficiency = [h2rg_eff, skipper_eff, em_eff]
+        self.output_dir = &#39;Output/&#39;
+        self.overw = False
+        self.check_output_dir()
+        self.files_in_output = os.listdir(self.output_dir)
+        self.h5file = h5py.File(&#39;NTEpyechelle/models/NTE.hdf&#39;, &#39;r&#39;)
+
+        # For AB default setup
+        self.Axs = np.random.uniform(0.45, 0.55, 6)
+        self.Ays = np.random.uniform(0.30, 0.40, 6)
+        self.Bxs = np.random.uniform(0.45, 0.55, 6)
+        self.Bys = np.random.uniform(0.60, 0.70, 6)
+
+
+    def find_slit(self,ccd):
+        &#39;&#39;&#39;
+        Used to find the slit size for a ccd and fiber.
+        Just used to naming the files.
+        &#39;&#39;&#39;
+        fib = self.h5file[&#39;CCD_&#39;+str(ccd)][&#39;fiber_&#39;+str(self.fiber)]
+        if fib.attrs[&#39;field_shape&#39;] == &#39;circular&#39;:
+            slit = &#39;pinhole&#39; + str(fib.attrs[&#39;slit_diameter&#39;])
+        elif fib.attrs[&#39;field_shape&#39;] == &#39;rectangular&#39;:
+            slit = &#39;slitwidth&#39; + str(fib.attrs[&#39;slit_width&#39;])
+        return slit
+
+    
+    def check_output_dir(self):
+        &#39;&#39;&#39;
+        Check if the output directiory exists, if not it makes it.
+        &#39;&#39;&#39;
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
+
+
+    def simulator(self, ccd, source, name, exposure_time):
+        &#39;&#39;&#39;
+        Makes the simulation given the input parameters.
+
+        Parameters
+        ----------
+        ccd : int
+            1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.
+
+        source : NTEpyechelle.sources
+            The source to be simulated.
+
+        name : str
+            The name of the file to be saved.
+
+        exposure_time : float
+            The exposure time of the simulation.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        self.check_output_dir()
+        sim = Simulator(ZEMAX(&#39;NTE&#39;))
+        sim.set_ccd(ccd)
+        sim.set_fibers(self.fiber)
+        sim.set_sources(source)
+        sim.set_efficiency(self.efficiency[ccd-1])
+        sim.set_exposure_time(exposure_time)
+        sim.set_output(self.output_dir + name, overwrite=True)
+        sim.set_cuda(self.gpu)
+        sim.run()
+
+
+    def point_simulator(self, ccd, source, name, exposure_time, posx, posy, seeing):
+        &#39;&#39;&#39;
+        Makes the simulation given the input parameters. Now as a point source.
+
+        Parameters
+        ----------
+        ccd : int
+            1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.
+
+        source : NTEpyechelle.sources
+            The source to be simulated.
+
+        name : str
+            The name of the file to be saved.
+
+        exposure_time : float
+            The exposure time of the simulation.
+
+        posx : float
+            The x position of the point source.
+
+        posy : float
+            The y position of the point source.
+
+        seeing : float
+            The seeing of the point source.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        self.check_output_dir()
+        sim = Simulator(ZEMAX(&#39;NTE&#39;))
+        sim.set_ccd(ccd)
+        sim.set_fibers(self.fiber)
+        sim.set_sources(source)
+        sim.set_efficiency(self.efficiency[ccd-1])
+        sim.set_exposure_time(exposure_time)
+        sim.set_point(seeing=seeing, pos=[posx,posy])
+        sim.set_output(self.output_dir + name, overwrite=True)
+        sim.set_cuda(self.gpu)
+        sim.run()
+
+
+    &#39;&#39;&#39;
+    Bias functions
+    &#39;&#39;&#39;
+
+
+    def uv_make_bias(self, exposure_time=0.000000001, name=False):
+        &#39;&#39;&#39;
+        Makes a bias for the UV ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_bias_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+
+    def vis_make_bias(self, exposure_time=0.000000001, name=False):
+        &#39;&#39;&#39;
+        Makes a bias for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_bias_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_dark(self, exposure_time=0.000000001, name=False):
+        &#39;&#39;&#39;
+        Makes a dark for the IR ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_dark_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    Flat functions
+    &#39;&#39;&#39;
+
+
+    def uv_make_flat(self, exposure_time=10, name=False):
+        &#39;&#39;&#39;
+        Makes a flat for the UV ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+
+    def vis_make_flat(self, exposure_time=5, name=False):
+        &#39;&#39;&#39;
+        Makes a flat for the VIS ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_flat(self, exposure_time=0.5, name=False):
+        &#39;&#39;&#39;
+        Makes a flat for the IR ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    HgAr functions
+    &#39;&#39;&#39;
+
+
+    def get_HgAr_source(self):
+        &#39;&#39;&#39;
+        Gets the HgAr source from the data/line_files/HgArFinal.csv file.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        source : LineList
+            The HgAr source.
+        &#39;&#39;&#39;
+        dat = np.loadtxt(&#34;data/line_files/HgArFinal.csv&#34;)
+        wl = dat[:,0] * u.nm
+        wl_micron = wl.to(u.micron)
+        wl_micron = wl_micron.value
+        flux = dat[:,1]
+        source = LineList(wavelengths=wl_micron, intensities=flux)
+        return source
+
+
+    def uv_make_HgAr(self, exposure_time=1, name=False):
+        &#39;&#39;&#39;
+        Makes a HgAr for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_HgAr_source()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+
+    def vis_make_HgAr(self, exposure_time=1, name=False):
+        &#39;&#39;&#39;
+        Makes a HgAr for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_HgAr_source()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_HgAr(self, exposure_time=1, name=False):
+        &#39;&#39;&#39;
+        Makes a HgAr for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_HgAr_source()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    Etalon functions
+    &#39;&#39;&#39;
+
+
+    def get_etalon_source(self):
+        &#39;&#39;&#39;
+        Gets the etalon source from the data/custom_etalon/etalon_mosaic.dat file.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        etalon_source : CSV
+            The etalon source.
+        &#39;&#39;&#39;
+        etalon_source = CSV(filepath=&#34;data/custom_etalon/etalon_mosaic.dat&#34;, \
+                name=&#34;&#34;, list_like=True, wavelength_unit=&#39;nm&#39;, flux_in_photons=False, delimiter=&#39; &#39;)
+        return etalon_source
+
+    
+    def uv_make_etalon(self, exposure_time=18, name=False):
+        &#39;&#39;&#39;
+        Makes a etalon for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_etalon_source()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+    
+    def vis_make_etalon(self, exposure_time=66, name=False):
+        &#39;&#39;&#39;
+        Makes a etalon for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_etalon_source()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+        
+    def ir_make_etalon(self, exposure_time=6, name=False):
+        &#39;&#39;&#39;
+        Makes a etalon for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_etalon_source()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    Trace functions
+    &#39;&#39;&#39;
+
+    def uv_make_trace(self, exposure_time=0.33, name=False):
+        &#39;&#39;&#39;
+        Makes a trace for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        save_old_fiber = self.fiber
+        self.fiber = 9
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        self.fiber = save_old_fiber
+
+
+    def vis_make_trace(self, exposure_time=0.33, name=False):
+        &#39;&#39;&#39;
+        Makes a trace for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        save_old_fiber = self.fiber
+        self.fiber = 9
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        self.fiber = save_old_fiber
+
+    
+    def ir_make_trace(self, exposure_time=0.33, name=False):
+        &#39;&#39;&#39;
+        Makes a trace for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        save_old_fiber = self.fiber
+        self.fiber = 9
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        self.fiber = save_old_fiber
+
+    
+    &#39;&#39;&#39;
+    Sky functions
+    &#39;&#39;&#39;
+
+
+    def get_sky_source(self):
+        &#39;&#39;&#39;
+        Gets the sky source.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        skyline_source: CSV
+            The sky source.
+        &#39;&#39;&#39;
+        skyline_source = CSV(filepath=&#34;data/line_files/skycalc_radiance.dat&#34;, \
+                name=&#34;&#34;, list_like=True, wavelength_unit=&#39;nm&#39;, flux_in_photons=False, delimiter=&#39; &#39;,\
+                    scale_now=False)
+        # Right now the input file is in ph/s/m^2/micron/arcsec^2 so we have to convert it to
+        # erg/s/cm^2/cm
+        # First we find the area of the slit.
+        slit = self.find_slit(ccd=3)
+        if slit[:3] == &#39;pin&#39;:
+            slit_w = float(slit[7:])
+            slit_area = np.pi*(slit_w/2)**2
+        elif slit[:3] == &#39;sli&#39;:
+            slit_w = float(slit[9:])
+            slit_l = 22.8
+            slit_area = slit_w*slit_l
+
+        skyline_source.flux_data *= slit_area
+        # Now the unit is ph/s/m^2/micron so we have to convert it to erg/s/cm^2/cm
+        # Firstly convert the photons to ergs
+        wl = skyline_source.wl_data * u.micron # in microns
+        wl = wl.to(u.cm).value
+        # Energy for photon at wl in ergs
+        planck_cgs = 6.6260755e-27
+        c_cgs = 2.99792458e10
+        energy = planck_cgs*c_cgs/wl
+        # Now convert the photons to ergs
+        skyline_source.flux_data *= energy
+        # Now the unit is erg/s/m^2/micron so we have to convert it to erg/s/cm^2/cm
+        f = skyline_source.flux_data * u.erg/u.s/u.m**2/u.micron
+        f = f.to(u.erg/u.s/u.cm**2/u.cm).value
+        skyline_source.flux_data = f
+
+        skyline_source.flux_scale()
+
+        return skyline_source
+
+    
+    def uv_make_sky(self, exposure_time=233, name=False, nr=1):
+        &#39;&#39;&#39;
+        Makes a sky for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_sky_source()
+        for i in range(nr):
+            if not name or nr &gt; 1:
+                slit = self.find_slit(ccd=3)
+                name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+            if self.overw:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+            else:
+                if name not in self.files_in_output:
+                    self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)    
+
+        
+    def vis_make_sky(self, exposure_time=3, name=False, nr=1):
+        &#39;&#39;&#39;
+        Makes a sky for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_sky_source()
+        for i in range(nr):
+            if not name or nr &gt; 1:
+                slit = self.find_slit(ccd=2)
+                name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+            if self.overw:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+            else:
+                if name not in self.files_in_output:
+                    self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_sky(self, exposure_time=0.5, name=False, nr=1):
+        &#39;&#39;&#39;
+        Makes a sky for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_sky_source()
+        for i in range(nr):
+            if not name or nr &gt; 1:
+                slit = self.find_slit(ccd=1)
+                name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+            if self.overw:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+            else:
+                if name not in self.files_in_output:
+                    self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    GRB25 functions
+    &#39;&#39;&#39;
+
+
+    def get_grb25_source(self):
+        &#39;&#39;&#39;
+        Gets the GRB25 source.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        grb25_source: CSV
+            The GRB25 source.
+        &#39;&#39;&#39;
+        grb25_source = CSV(filepath=&#34;data/scienceframe_data/GRB/extended_GRBspec_2.5_withabs.dat&#34;, \
+                name=&#34;&#34;, list_like=True, wavelength_unit=&#39;a&#39;, flux_in_photons=False, delimiter=&#39; &#39;)
+        return grb25_source
+
+
+    def uv_make_grb25(self, exposure_time=5, name=False, seeing=0.8, posx=0.5, posy=0.5):
+        &#39;&#39;&#39;
+        Makes a GRB25 for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        seeing : float
+            The seeing of the simulation.
+
+        posx : float
+            The x position of the source.
+
+        posy : float
+            The y position of the source.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_grb25_source()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        if self.overw:
+            self.point_simulator(ccd=3, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+        else:
+            if name not in self.files_in_output:
+                self.point_simulator(ccd=3, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+
+
+    def vis_make_grb25(self, exposure_time=3, name=False, seeing=0.8, posx=0.5, posy=0.5):
+        &#39;&#39;&#39;
+        Makes a GRB25 for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        seeing : float
+            The seeing of the simulation.
+
+        posx : float
+            The x position of the source.
+
+        posy : float
+            The y position of the source.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_grb25_source()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        if self.overw:
+            self.point_simulator(ccd=2, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+        else:
+            if name not in self.files_in_output:
+                self.point_simulator(ccd=2, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+
+
+    def ir_make_grb25(self, exposure_time=1, name=False, seeing=0.8, posx=0.5, posy=0.5):
+        &#39;&#39;&#39;
+        Makes a GRB25 for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        seeing : float
+            The seeing of the simulation.
+
+        posx : float
+            The x position of the source.
+
+        posy : float
+            The y position of the source.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_grb25_source()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        if self.overw:
+            self.point_simulator(ccd=1, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+        else:
+            if name not in self.files_in_output:
+                self.point_simulator(ccd=1, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+
+    
+    &#39;&#39;&#39;
+    Custom functions
+    &#39;&#39;&#39;
+
+
+    def make_custom(self, ccd, exposure_time, source, name, point=False, posx=0.5, posy=0.5, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a simulation for a custom source.
+
+        Parameters
+        ----------
+        ccd : int
+            The ccd to simulate - 1 for IR, 2 for VIS, 3 for UV.
+
+        exposure_time : float
+            The exposure time of the simulation.
+
+        source : CSV
+            The source to simulate.
+
+        name : str
+            The name of the file to be saved.
+
+        point : bool
+            If the source is a point source or not.
+        
+        posx : float
+            The x position of the source. Only used if point=True.
+
+        posy : float
+            The y position of the source. Only used if point=True.
+
+        seeing : float
+            The seeing of the simulation. Only used if point=True.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if self.overw:
+            if point:
+                self.point_simulator(ccd, source, name, exposure_time, posx, posy, seeing)
+            else:
+                self.simulator(ccd, source, name, exposure_time)
+        else:
+            if name not in self.files_in_output:
+                if point:
+                    self.point_simulator(ccd, source, name, exposure_time, posx, posy, seeing)
+                else:
+                    self.simulator(ccd, source, name, exposure_time)
+
+
+    &#39;&#39;&#39;
+    AB function for grb25
+    &#39;&#39;&#39;
+
+
+    def uv_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a AB setup for the UV ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+        source : NTEpyechelle source
+            The source to simulate.
+
+        possx_A : list
+            The x positions of the sources in the A slit.
+
+        possy_A : list
+            The y positions of the sources in the A slit.
+
+        possx_B : list
+            The x positions of the sources in the B slit.
+
+        possy_B : list
+            The y positions of the sources in the B slit.
+
+        seeing : float
+            The seeing of the simulation.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if source == &#39;grb25&#39;:
+            source = self.get_grb25_source()
+        if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+            possx_A = self.Axs
+            possy_A = self.Ays
+            possx_B = self.Bxs
+            possy_B = self.Bys
+        for i in range(len(possx_A)):
+            if not name:
+                slit = self.find_slit(ccd=3)
+                A_name = &#39;uv_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+                B_name = &#39;uv_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            else:
+                A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+                B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+            if self.overw:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=3, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                self.point_simulator(ccd=3, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            else:
+                if A_name not in self.files_in_output:
+                    Ax = possx_A[i]
+                    Ay = possy_A[i]
+                    self.point_simulator(ccd=3, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                if B_name not in self.files_in_output:
+                    Bx = possx_B[i]
+                    By = possy_B[i]
+                    self.point_simulator(ccd=3, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+
+    
+    def vis_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a AB setup for the VIS ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+        source : NTEpyechelle source
+            The source to simulate.
+
+        possx_A : list
+            The x positions of the sources in the A slit.
+
+        possy_A : list
+            The y positions of the sources in the A slit.
+
+        possx_B : list
+            The x positions of the sources in the B slit.
+
+        possy_B : list
+            The y positions of the sources in the B slit.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if source == &#39;grb25&#39;:
+            source = self.get_grb25_source()
+        if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+            possx_A = self.Axs
+            possy_A = self.Ays
+            possx_B = self.Bxs
+            possy_B = self.Bys
+        for i in range(len(possx_A)):
+            if not name:
+                slit = self.find_slit(ccd=2)
+                A_name = &#39;vis_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+                B_name = &#39;vis_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            else:
+                A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+                B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+            if self.overw:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=2, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                self.point_simulator(ccd=2, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            else:
+                if A_name not in self.files_in_output:
+                    Ax = possx_A[i]
+                    Ay = possy_A[i]
+                    self.point_simulator(ccd=2, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                if B_name not in self.files_in_output:
+                    Bx = possx_B[i]
+                    By = possy_B[i]
+                    self.point_simulator(ccd=2, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+
+
+    def ir_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a AB setup for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+        source : NTEpyechelle source
+            The source to simulate.
+
+        possx_A : list
+            The x positions of the sources in the A slit.
+
+        possy_A : list
+            The y positions of the sources in the A slit.
+
+        possx_B : list
+            The x positions of the sources in the B slit.
+
+        possy_B : list
+            The y positions of the sources in the B slit.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if source == &#39;grb25&#39;:
+            source = self.get_grb25_source()
+        if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+            possx_A = self.Axs
+            possy_A = self.Ays
+            possx_B = self.Bxs
+            possy_B = self.Bys
+        for i in range(len(possx_A)):
+            if not name:
+                slit = self.find_slit(ccd=1)
+                A_name = &#39;ir_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+                B_name = &#39;ir_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            else:
+                A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+                B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+            if self.overw:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=1, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                self.point_simulator(ccd=1, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            else:
+                if A_name not in self.files_in_output:
+                    Ax = possx_A[i]
+                    Ay = possy_A[i]
+                    self.point_simulator(ccd=1, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                if B_name not in self.files_in_output:
+                    Bx = possx_B[i]
+                    By = possy_B[i]
+                    self.point_simulator(ccd=1, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            
+    
+    &#39;&#39;&#39;
+    All functions
+    &#39;&#39;&#39;
+
+
+    def make_all(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations
+
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.uv_make_bias()
+        self.vis_make_bias()
+        self.ir_make_dark()
+        self.uv_make_flat()
+        self.vis_make_flat()
+        self.ir_make_flat()
+        self.uv_make_HgAr()
+        self.vis_make_HgAr()
+        self.ir_make_HgAr()
+        self.uv_make_etalon()
+        self.vis_make_etalon()
+        self.ir_make_etalon()
+        self.uv_make_trace()
+        self.vis_make_trace()
+        self.ir_make_trace()
+        self.uv_make_sky(nr=5)
+        self.vis_make_sky(nr=5)
+        self.ir_make_sky(nr=5)
+        if with_grb25:
+            self.uv_make_grb25()
+            self.vis_make_grb25()
+            self.ir_make_grb25()
+            self.uv_make_ab()
+            self.vis_make_ab()
+            self.ir_make_ab()
+
+
+    def make_all_uv(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations for the UV
+        
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+        
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.uv_make_bias()
+        self.uv_make_flat()
+        self.uv_make_HgAr()
+        self.uv_make_etalon()
+        self.uv_make_trace()
+        self.uv_make_sky(nr=5)
+        if with_grb25:
+            self.uv_make_grb25()
+            self.uv_make_ab()
+    
+
+    def make_all_vis(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations for the VIS
+        
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+        
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.vis_make_bias()
+        self.vis_make_flat()
+        self.vis_make_HgAr()
+        self.vis_make_etalon()
+        self.vis_make_trace()
+        self.vis_make_sky(nr=5)
+        if with_grb25:
+            self.vis_make_grb25()
+            self.vis_make_ab()
+    
+
+    def make_all_ir(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations for the IR
+        
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+        
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.ir_make_dark()
+        self.ir_make_flat()
+        self.ir_make_HgAr()
+        self.ir_make_etalon()
+        self.ir_make_trace()
+        self.ir_make_sky(nr=5)
+        if with_grb25:
+            self.ir_make_grb25()
+            self.ir_make_ab()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="NTEsim.make_schematics.MakeSchematics"><code class="flex name class">
+<span>class <span class="ident">MakeSchematics</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class to contain all functions and variables needed to make the simulations.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MakeSchematics:
+    &#39;&#39;&#39;
+    Class to contain all functions and variables needed to make the simulations.
+    &#39;&#39;&#39;
+    def __init__(self):
+        self.gpu = True
+        self.fiber = 3
+        em_eff = CSVEfficiency(&#39;EM_eff&#39;, &#39;data/efficiency/em_eff.csv&#39;)
+        skipper_eff = CSVEfficiency(&#39;Skipper_eff&#39;, &#39;data/efficiency/skipper_eff.csv&#39;)
+        h2rg_eff = CSVEfficiency(&#39;H2RG_eff&#39;, &#39;data/efficiency/h2rg_eff.csv&#39;)
+        self.efficiency = [h2rg_eff, skipper_eff, em_eff]
+        self.output_dir = &#39;Output/&#39;
+        self.overw = False
+        self.check_output_dir()
+        self.files_in_output = os.listdir(self.output_dir)
+        self.h5file = h5py.File(&#39;NTEpyechelle/models/NTE.hdf&#39;, &#39;r&#39;)
+
+        # For AB default setup
+        self.Axs = np.random.uniform(0.45, 0.55, 6)
+        self.Ays = np.random.uniform(0.30, 0.40, 6)
+        self.Bxs = np.random.uniform(0.45, 0.55, 6)
+        self.Bys = np.random.uniform(0.60, 0.70, 6)
+
+
+    def find_slit(self,ccd):
+        &#39;&#39;&#39;
+        Used to find the slit size for a ccd and fiber.
+        Just used to naming the files.
+        &#39;&#39;&#39;
+        fib = self.h5file[&#39;CCD_&#39;+str(ccd)][&#39;fiber_&#39;+str(self.fiber)]
+        if fib.attrs[&#39;field_shape&#39;] == &#39;circular&#39;:
+            slit = &#39;pinhole&#39; + str(fib.attrs[&#39;slit_diameter&#39;])
+        elif fib.attrs[&#39;field_shape&#39;] == &#39;rectangular&#39;:
+            slit = &#39;slitwidth&#39; + str(fib.attrs[&#39;slit_width&#39;])
+        return slit
+
+    
+    def check_output_dir(self):
+        &#39;&#39;&#39;
+        Check if the output directiory exists, if not it makes it.
+        &#39;&#39;&#39;
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
+
+
+    def simulator(self, ccd, source, name, exposure_time):
+        &#39;&#39;&#39;
+        Makes the simulation given the input parameters.
+
+        Parameters
+        ----------
+        ccd : int
+            1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.
+
+        source : NTEpyechelle.sources
+            The source to be simulated.
+
+        name : str
+            The name of the file to be saved.
+
+        exposure_time : float
+            The exposure time of the simulation.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        self.check_output_dir()
+        sim = Simulator(ZEMAX(&#39;NTE&#39;))
+        sim.set_ccd(ccd)
+        sim.set_fibers(self.fiber)
+        sim.set_sources(source)
+        sim.set_efficiency(self.efficiency[ccd-1])
+        sim.set_exposure_time(exposure_time)
+        sim.set_output(self.output_dir + name, overwrite=True)
+        sim.set_cuda(self.gpu)
+        sim.run()
+
+
+    def point_simulator(self, ccd, source, name, exposure_time, posx, posy, seeing):
+        &#39;&#39;&#39;
+        Makes the simulation given the input parameters. Now as a point source.
+
+        Parameters
+        ----------
+        ccd : int
+            1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.
+
+        source : NTEpyechelle.sources
+            The source to be simulated.
+
+        name : str
+            The name of the file to be saved.
+
+        exposure_time : float
+            The exposure time of the simulation.
+
+        posx : float
+            The x position of the point source.
+
+        posy : float
+            The y position of the point source.
+
+        seeing : float
+            The seeing of the point source.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        self.check_output_dir()
+        sim = Simulator(ZEMAX(&#39;NTE&#39;))
+        sim.set_ccd(ccd)
+        sim.set_fibers(self.fiber)
+        sim.set_sources(source)
+        sim.set_efficiency(self.efficiency[ccd-1])
+        sim.set_exposure_time(exposure_time)
+        sim.set_point(seeing=seeing, pos=[posx,posy])
+        sim.set_output(self.output_dir + name, overwrite=True)
+        sim.set_cuda(self.gpu)
+        sim.run()
+
+
+    &#39;&#39;&#39;
+    Bias functions
+    &#39;&#39;&#39;
+
+
+    def uv_make_bias(self, exposure_time=0.000000001, name=False):
+        &#39;&#39;&#39;
+        Makes a bias for the UV ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_bias_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+
+    def vis_make_bias(self, exposure_time=0.000000001, name=False):
+        &#39;&#39;&#39;
+        Makes a bias for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_bias_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_dark(self, exposure_time=0.000000001, name=False):
+        &#39;&#39;&#39;
+        Makes a dark for the IR ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_dark_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    Flat functions
+    &#39;&#39;&#39;
+
+
+    def uv_make_flat(self, exposure_time=10, name=False):
+        &#39;&#39;&#39;
+        Makes a flat for the UV ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+
+    def vis_make_flat(self, exposure_time=5, name=False):
+        &#39;&#39;&#39;
+        Makes a flat for the VIS ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_flat(self, exposure_time=0.5, name=False):
+        &#39;&#39;&#39;
+        Makes a flat for the IR ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    HgAr functions
+    &#39;&#39;&#39;
+
+
+    def get_HgAr_source(self):
+        &#39;&#39;&#39;
+        Gets the HgAr source from the data/line_files/HgArFinal.csv file.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        source : LineList
+            The HgAr source.
+        &#39;&#39;&#39;
+        dat = np.loadtxt(&#34;data/line_files/HgArFinal.csv&#34;)
+        wl = dat[:,0] * u.nm
+        wl_micron = wl.to(u.micron)
+        wl_micron = wl_micron.value
+        flux = dat[:,1]
+        source = LineList(wavelengths=wl_micron, intensities=flux)
+        return source
+
+
+    def uv_make_HgAr(self, exposure_time=1, name=False):
+        &#39;&#39;&#39;
+        Makes a HgAr for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_HgAr_source()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+
+    def vis_make_HgAr(self, exposure_time=1, name=False):
+        &#39;&#39;&#39;
+        Makes a HgAr for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_HgAr_source()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_HgAr(self, exposure_time=1, name=False):
+        &#39;&#39;&#39;
+        Makes a HgAr for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_HgAr_source()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    Etalon functions
+    &#39;&#39;&#39;
+
+
+    def get_etalon_source(self):
+        &#39;&#39;&#39;
+        Gets the etalon source from the data/custom_etalon/etalon_mosaic.dat file.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        etalon_source : CSV
+            The etalon source.
+        &#39;&#39;&#39;
+        etalon_source = CSV(filepath=&#34;data/custom_etalon/etalon_mosaic.dat&#34;, \
+                name=&#34;&#34;, list_like=True, wavelength_unit=&#39;nm&#39;, flux_in_photons=False, delimiter=&#39; &#39;)
+        return etalon_source
+
+    
+    def uv_make_etalon(self, exposure_time=18, name=False):
+        &#39;&#39;&#39;
+        Makes a etalon for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_etalon_source()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+
+    
+    def vis_make_etalon(self, exposure_time=66, name=False):
+        &#39;&#39;&#39;
+        Makes a etalon for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_etalon_source()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+        
+    def ir_make_etalon(self, exposure_time=6, name=False):
+        &#39;&#39;&#39;
+        Makes a etalon for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_etalon_source()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    Trace functions
+    &#39;&#39;&#39;
+
+    def uv_make_trace(self, exposure_time=0.33, name=False):
+        &#39;&#39;&#39;
+        Makes a trace for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        save_old_fiber = self.fiber
+        self.fiber = 9
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        self.fiber = save_old_fiber
+
+
+    def vis_make_trace(self, exposure_time=0.33, name=False):
+        &#39;&#39;&#39;
+        Makes a trace for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        save_old_fiber = self.fiber
+        self.fiber = 9
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        self.fiber = save_old_fiber
+
+    
+    def ir_make_trace(self, exposure_time=0.33, name=False):
+        &#39;&#39;&#39;
+        Makes a trace for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = Constant()
+        save_old_fiber = self.fiber
+        self.fiber = 9
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        self.fiber = save_old_fiber
+
+    
+    &#39;&#39;&#39;
+    Sky functions
+    &#39;&#39;&#39;
+
+
+    def get_sky_source(self):
+        &#39;&#39;&#39;
+        Gets the sky source.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        skyline_source: CSV
+            The sky source.
+        &#39;&#39;&#39;
+        skyline_source = CSV(filepath=&#34;data/line_files/skycalc_radiance.dat&#34;, \
+                name=&#34;&#34;, list_like=True, wavelength_unit=&#39;nm&#39;, flux_in_photons=False, delimiter=&#39; &#39;,\
+                    scale_now=False)
+        # Right now the input file is in ph/s/m^2/micron/arcsec^2 so we have to convert it to
+        # erg/s/cm^2/cm
+        # First we find the area of the slit.
+        slit = self.find_slit(ccd=3)
+        if slit[:3] == &#39;pin&#39;:
+            slit_w = float(slit[7:])
+            slit_area = np.pi*(slit_w/2)**2
+        elif slit[:3] == &#39;sli&#39;:
+            slit_w = float(slit[9:])
+            slit_l = 22.8
+            slit_area = slit_w*slit_l
+
+        skyline_source.flux_data *= slit_area
+        # Now the unit is ph/s/m^2/micron so we have to convert it to erg/s/cm^2/cm
+        # Firstly convert the photons to ergs
+        wl = skyline_source.wl_data * u.micron # in microns
+        wl = wl.to(u.cm).value
+        # Energy for photon at wl in ergs
+        planck_cgs = 6.6260755e-27
+        c_cgs = 2.99792458e10
+        energy = planck_cgs*c_cgs/wl
+        # Now convert the photons to ergs
+        skyline_source.flux_data *= energy
+        # Now the unit is erg/s/m^2/micron so we have to convert it to erg/s/cm^2/cm
+        f = skyline_source.flux_data * u.erg/u.s/u.m**2/u.micron
+        f = f.to(u.erg/u.s/u.cm**2/u.cm).value
+        skyline_source.flux_data = f
+
+        skyline_source.flux_scale()
+
+        return skyline_source
+
+    
+    def uv_make_sky(self, exposure_time=233, name=False, nr=1):
+        &#39;&#39;&#39;
+        Makes a sky for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_sky_source()
+        for i in range(nr):
+            if not name or nr &gt; 1:
+                slit = self.find_slit(ccd=3)
+                name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+            if self.overw:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+            else:
+                if name not in self.files_in_output:
+                    self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)    
+
+        
+    def vis_make_sky(self, exposure_time=3, name=False, nr=1):
+        &#39;&#39;&#39;
+        Makes a sky for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_sky_source()
+        for i in range(nr):
+            if not name or nr &gt; 1:
+                slit = self.find_slit(ccd=2)
+                name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+            if self.overw:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+            else:
+                if name not in self.files_in_output:
+                    self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+
+
+    def ir_make_sky(self, exposure_time=0.5, name=False, nr=1):
+        &#39;&#39;&#39;
+        Makes a sky for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_sky_source()
+        for i in range(nr):
+            if not name or nr &gt; 1:
+                slit = self.find_slit(ccd=1)
+                name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+            if self.overw:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+            else:
+                if name not in self.files_in_output:
+                    self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+
+
+    &#39;&#39;&#39;
+    GRB25 functions
+    &#39;&#39;&#39;
+
+
+    def get_grb25_source(self):
+        &#39;&#39;&#39;
+        Gets the GRB25 source.
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        grb25_source: CSV
+            The GRB25 source.
+        &#39;&#39;&#39;
+        grb25_source = CSV(filepath=&#34;data/scienceframe_data/GRB/extended_GRBspec_2.5_withabs.dat&#34;, \
+                name=&#34;&#34;, list_like=True, wavelength_unit=&#39;a&#39;, flux_in_photons=False, delimiter=&#39; &#39;)
+        return grb25_source
+
+
+    def uv_make_grb25(self, exposure_time=5, name=False, seeing=0.8, posx=0.5, posy=0.5):
+        &#39;&#39;&#39;
+        Makes a GRB25 for the UV ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        seeing : float
+            The seeing of the simulation.
+
+        posx : float
+            The x position of the source.
+
+        posy : float
+            The y position of the source.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_grb25_source()
+        if not name:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        if self.overw:
+            self.point_simulator(ccd=3, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+        else:
+            if name not in self.files_in_output:
+                self.point_simulator(ccd=3, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+
+
+    def vis_make_grb25(self, exposure_time=3, name=False, seeing=0.8, posx=0.5, posy=0.5):
+        &#39;&#39;&#39;
+        Makes a GRB25 for the VIS ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        seeing : float
+            The seeing of the simulation.
+
+        posx : float
+            The x position of the source.
+
+        posy : float
+            The y position of the source.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_grb25_source()
+        if not name:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        if self.overw:
+            self.point_simulator(ccd=2, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+        else:
+            if name not in self.files_in_output:
+                self.point_simulator(ccd=2, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+
+
+    def ir_make_grb25(self, exposure_time=1, name=False, seeing=0.8, posx=0.5, posy=0.5):
+        &#39;&#39;&#39;
+        Makes a GRB25 for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved.
+
+        seeing : float
+            The seeing of the simulation.
+
+        posx : float
+            The x position of the source.
+
+        posy : float
+            The y position of the source.
+        
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        source = self.get_grb25_source()
+        if not name:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        if self.overw:
+            self.point_simulator(ccd=1, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+        else:
+            if name not in self.files_in_output:
+                self.point_simulator(ccd=1, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+
+    
+    &#39;&#39;&#39;
+    Custom functions
+    &#39;&#39;&#39;
+
+
+    def make_custom(self, ccd, exposure_time, source, name, point=False, posx=0.5, posy=0.5, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a simulation for a custom source.
+
+        Parameters
+        ----------
+        ccd : int
+            The ccd to simulate - 1 for IR, 2 for VIS, 3 for UV.
+
+        exposure_time : float
+            The exposure time of the simulation.
+
+        source : CSV
+            The source to simulate.
+
+        name : str
+            The name of the file to be saved.
+
+        point : bool
+            If the source is a point source or not.
+        
+        posx : float
+            The x position of the source. Only used if point=True.
+
+        posy : float
+            The y position of the source. Only used if point=True.
+
+        seeing : float
+            The seeing of the simulation. Only used if point=True.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if self.overw:
+            if point:
+                self.point_simulator(ccd, source, name, exposure_time, posx, posy, seeing)
+            else:
+                self.simulator(ccd, source, name, exposure_time)
+        else:
+            if name not in self.files_in_output:
+                if point:
+                    self.point_simulator(ccd, source, name, exposure_time, posx, posy, seeing)
+                else:
+                    self.simulator(ccd, source, name, exposure_time)
+
+
+    &#39;&#39;&#39;
+    AB function for grb25
+    &#39;&#39;&#39;
+
+
+    def uv_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a AB setup for the UV ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+        source : NTEpyechelle source
+            The source to simulate.
+
+        possx_A : list
+            The x positions of the sources in the A slit.
+
+        possy_A : list
+            The y positions of the sources in the A slit.
+
+        possx_B : list
+            The x positions of the sources in the B slit.
+
+        possy_B : list
+            The y positions of the sources in the B slit.
+
+        seeing : float
+            The seeing of the simulation.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if source == &#39;grb25&#39;:
+            source = self.get_grb25_source()
+        if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+            possx_A = self.Axs
+            possy_A = self.Ays
+            possx_B = self.Bxs
+            possy_B = self.Bys
+        for i in range(len(possx_A)):
+            if not name:
+                slit = self.find_slit(ccd=3)
+                A_name = &#39;uv_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+                B_name = &#39;uv_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            else:
+                A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+                B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+            if self.overw:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=3, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                self.point_simulator(ccd=3, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            else:
+                if A_name not in self.files_in_output:
+                    Ax = possx_A[i]
+                    Ay = possy_A[i]
+                    self.point_simulator(ccd=3, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                if B_name not in self.files_in_output:
+                    Bx = possx_B[i]
+                    By = possy_B[i]
+                    self.point_simulator(ccd=3, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+
+    
+    def vis_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a AB setup for the VIS ccd.
+
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+        source : NTEpyechelle source
+            The source to simulate.
+
+        possx_A : list
+            The x positions of the sources in the A slit.
+
+        possy_A : list
+            The y positions of the sources in the A slit.
+
+        possx_B : list
+            The x positions of the sources in the B slit.
+
+        possy_B : list
+            The y positions of the sources in the B slit.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if source == &#39;grb25&#39;:
+            source = self.get_grb25_source()
+        if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+            possx_A = self.Axs
+            possy_A = self.Ays
+            possx_B = self.Bxs
+            possy_B = self.Bys
+        for i in range(len(possx_A)):
+            if not name:
+                slit = self.find_slit(ccd=2)
+                A_name = &#39;vis_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+                B_name = &#39;vis_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            else:
+                A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+                B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+            if self.overw:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=2, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                self.point_simulator(ccd=2, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            else:
+                if A_name not in self.files_in_output:
+                    Ax = possx_A[i]
+                    Ay = possy_A[i]
+                    self.point_simulator(ccd=2, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                if B_name not in self.files_in_output:
+                    Bx = possx_B[i]
+                    By = possy_B[i]
+                    self.point_simulator(ccd=2, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+
+
+    def ir_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+        &#39;&#39;&#39;
+        Makes a AB setup for the IR ccd.
+        
+        Parameters
+        ----------
+        exposure_time : float
+            The exposure time of the simulation.
+
+        name : str
+            The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+        source : NTEpyechelle source
+            The source to simulate.
+
+        possx_A : list
+            The x positions of the sources in the A slit.
+
+        possy_A : list
+            The y positions of the sources in the A slit.
+
+        possx_B : list
+            The x positions of the sources in the B slit.
+
+        possy_B : list
+            The y positions of the sources in the B slit.
+
+        Returns
+        -------
+        It makes a fits file in the output directory.
+        &#39;&#39;&#39;
+        if source == &#39;grb25&#39;:
+            source = self.get_grb25_source()
+        if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+            possx_A = self.Axs
+            possy_A = self.Ays
+            possx_B = self.Bxs
+            possy_B = self.Bys
+        for i in range(len(possx_A)):
+            if not name:
+                slit = self.find_slit(ccd=1)
+                A_name = &#39;ir_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+                B_name = &#39;ir_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            else:
+                A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+                B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+            if self.overw:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=1, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                self.point_simulator(ccd=1, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            else:
+                if A_name not in self.files_in_output:
+                    Ax = possx_A[i]
+                    Ay = possy_A[i]
+                    self.point_simulator(ccd=1, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+                if B_name not in self.files_in_output:
+                    Bx = possx_B[i]
+                    By = possy_B[i]
+                    self.point_simulator(ccd=1, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+            
+    
+    &#39;&#39;&#39;
+    All functions
+    &#39;&#39;&#39;
+
+
+    def make_all(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations
+
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.uv_make_bias()
+        self.vis_make_bias()
+        self.ir_make_dark()
+        self.uv_make_flat()
+        self.vis_make_flat()
+        self.ir_make_flat()
+        self.uv_make_HgAr()
+        self.vis_make_HgAr()
+        self.ir_make_HgAr()
+        self.uv_make_etalon()
+        self.vis_make_etalon()
+        self.ir_make_etalon()
+        self.uv_make_trace()
+        self.vis_make_trace()
+        self.ir_make_trace()
+        self.uv_make_sky(nr=5)
+        self.vis_make_sky(nr=5)
+        self.ir_make_sky(nr=5)
+        if with_grb25:
+            self.uv_make_grb25()
+            self.vis_make_grb25()
+            self.ir_make_grb25()
+            self.uv_make_ab()
+            self.vis_make_ab()
+            self.ir_make_ab()
+
+
+    def make_all_uv(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations for the UV
+        
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+        
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.uv_make_bias()
+        self.uv_make_flat()
+        self.uv_make_HgAr()
+        self.uv_make_etalon()
+        self.uv_make_trace()
+        self.uv_make_sky(nr=5)
+        if with_grb25:
+            self.uv_make_grb25()
+            self.uv_make_ab()
+    
+
+    def make_all_vis(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations for the VIS
+        
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+        
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.vis_make_bias()
+        self.vis_make_flat()
+        self.vis_make_HgAr()
+        self.vis_make_etalon()
+        self.vis_make_trace()
+        self.vis_make_sky(nr=5)
+        if with_grb25:
+            self.vis_make_grb25()
+            self.vis_make_ab()
+    
+
+    def make_all_ir(self, with_grb25 = True):
+        &#39;&#39;&#39;
+        Makes all possible default simulations for the IR
+        
+        Parameters
+        ----------
+        with_grb25 : bool
+            If True, it will make the grb25 simulations.
+        
+        Returns
+        -------
+        It makes fits files in the output directory.
+        &#39;&#39;&#39;
+        self.ir_make_dark()
+        self.ir_make_flat()
+        self.ir_make_HgAr()
+        self.ir_make_etalon()
+        self.ir_make_trace()
+        self.ir_make_sky(nr=5)
+        if with_grb25:
+            self.ir_make_grb25()
+            self.ir_make_ab()</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="NTEsim.make_schematics.MakeSchematics.check_output_dir"><code class="name flex">
+<span>def <span class="ident">check_output_dir</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if the output directiory exists, if not it makes it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_output_dir(self):
+    &#39;&#39;&#39;
+    Check if the output directiory exists, if not it makes it.
+    &#39;&#39;&#39;
+    if not os.path.exists(self.output_dir):
+        os.makedirs(self.output_dir)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.find_slit"><code class="name flex">
+<span>def <span class="ident">find_slit</span></span>(<span>self, ccd)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Used to find the slit size for a ccd and fiber.
+Just used to naming the files.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_slit(self,ccd):
+    &#39;&#39;&#39;
+    Used to find the slit size for a ccd and fiber.
+    Just used to naming the files.
+    &#39;&#39;&#39;
+    fib = self.h5file[&#39;CCD_&#39;+str(ccd)][&#39;fiber_&#39;+str(self.fiber)]
+    if fib.attrs[&#39;field_shape&#39;] == &#39;circular&#39;:
+        slit = &#39;pinhole&#39; + str(fib.attrs[&#39;slit_diameter&#39;])
+    elif fib.attrs[&#39;field_shape&#39;] == &#39;rectangular&#39;:
+        slit = &#39;slitwidth&#39; + str(fib.attrs[&#39;slit_width&#39;])
+    return slit</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.get_HgAr_source"><code class="name flex">
+<span>def <span class="ident">get_HgAr_source</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the HgAr source from the data/line_files/HgArFinal.csv file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>None</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>source</code></strong> :&ensp;<code>LineList</code></dt>
+<dd>The HgAr source.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_HgAr_source(self):
+    &#39;&#39;&#39;
+    Gets the HgAr source from the data/line_files/HgArFinal.csv file.
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    source : LineList
+        The HgAr source.
+    &#39;&#39;&#39;
+    dat = np.loadtxt(&#34;data/line_files/HgArFinal.csv&#34;)
+    wl = dat[:,0] * u.nm
+    wl_micron = wl.to(u.micron)
+    wl_micron = wl_micron.value
+    flux = dat[:,1]
+    source = LineList(wavelengths=wl_micron, intensities=flux)
+    return source</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.get_etalon_source"><code class="name flex">
+<span>def <span class="ident">get_etalon_source</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the etalon source from the data/custom_etalon/etalon_mosaic.dat file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>None</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>etalon_source</code></strong> :&ensp;<code>CSV</code></dt>
+<dd>The etalon source.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_etalon_source(self):
+    &#39;&#39;&#39;
+    Gets the etalon source from the data/custom_etalon/etalon_mosaic.dat file.
+    
+    Parameters
+    ----------
+    None
+    
+    Returns
+    -------
+    etalon_source : CSV
+        The etalon source.
+    &#39;&#39;&#39;
+    etalon_source = CSV(filepath=&#34;data/custom_etalon/etalon_mosaic.dat&#34;, \
+            name=&#34;&#34;, list_like=True, wavelength_unit=&#39;nm&#39;, flux_in_photons=False, delimiter=&#39; &#39;)
+    return etalon_source</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.get_grb25_source"><code class="name flex">
+<span>def <span class="ident">get_grb25_source</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the GRB25 source.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>None</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>grb25_source</code></strong> :&ensp;<code>CSV</code></dt>
+<dd>The GRB25 source.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_grb25_source(self):
+    &#39;&#39;&#39;
+    Gets the GRB25 source.
+    
+    Parameters
+    ----------
+    None
+    
+    Returns
+    -------
+    grb25_source: CSV
+        The GRB25 source.
+    &#39;&#39;&#39;
+    grb25_source = CSV(filepath=&#34;data/scienceframe_data/GRB/extended_GRBspec_2.5_withabs.dat&#34;, \
+            name=&#34;&#34;, list_like=True, wavelength_unit=&#39;a&#39;, flux_in_photons=False, delimiter=&#39; &#39;)
+    return grb25_source</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.get_sky_source"><code class="name flex">
+<span>def <span class="ident">get_sky_source</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the sky source.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>None</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>skyline_source</code></strong> :&ensp;<code>CSV</code></dt>
+<dd>The sky source.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_sky_source(self):
+    &#39;&#39;&#39;
+    Gets the sky source.
+    
+    Parameters
+    ----------
+    None
+    
+    Returns
+    -------
+    skyline_source: CSV
+        The sky source.
+    &#39;&#39;&#39;
+    skyline_source = CSV(filepath=&#34;data/line_files/skycalc_radiance.dat&#34;, \
+            name=&#34;&#34;, list_like=True, wavelength_unit=&#39;nm&#39;, flux_in_photons=False, delimiter=&#39; &#39;,\
+                scale_now=False)
+    # Right now the input file is in ph/s/m^2/micron/arcsec^2 so we have to convert it to
+    # erg/s/cm^2/cm
+    # First we find the area of the slit.
+    slit = self.find_slit(ccd=3)
+    if slit[:3] == &#39;pin&#39;:
+        slit_w = float(slit[7:])
+        slit_area = np.pi*(slit_w/2)**2
+    elif slit[:3] == &#39;sli&#39;:
+        slit_w = float(slit[9:])
+        slit_l = 22.8
+        slit_area = slit_w*slit_l
+
+    skyline_source.flux_data *= slit_area
+    # Now the unit is ph/s/m^2/micron so we have to convert it to erg/s/cm^2/cm
+    # Firstly convert the photons to ergs
+    wl = skyline_source.wl_data * u.micron # in microns
+    wl = wl.to(u.cm).value
+    # Energy for photon at wl in ergs
+    planck_cgs = 6.6260755e-27
+    c_cgs = 2.99792458e10
+    energy = planck_cgs*c_cgs/wl
+    # Now convert the photons to ergs
+    skyline_source.flux_data *= energy
+    # Now the unit is erg/s/m^2/micron so we have to convert it to erg/s/cm^2/cm
+    f = skyline_source.flux_data * u.erg/u.s/u.m**2/u.micron
+    f = f.to(u.erg/u.s/u.cm**2/u.cm).value
+    skyline_source.flux_data = f
+
+    skyline_source.flux_scale()
+
+    return skyline_source</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_HgAr"><code class="name flex">
+<span>def <span class="ident">ir_make_HgAr</span></span>(<span>self, exposure_time=1, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a HgAr for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_HgAr(self, exposure_time=1, name=False):
+    &#39;&#39;&#39;
+    Makes a HgAr for the IR ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_HgAr_source()
+    if not name:
+        slit = self.find_slit(ccd=1)
+        name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_ab"><code class="name flex">
+<span>def <span class="ident">ir_make_ab</span></span>(<span>self, exposure_time=5, name=False, source='grb25', possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a AB setup for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved. 'A' and 'B' will be added to the name. Also a number to indicate number of simulation.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>NTEpyechelle source</code></dt>
+<dd>The source to simulate.</dd>
+<dt><strong><code>possx_A</code></strong> :&ensp;<code>list</code></dt>
+<dd>The x positions of the sources in the A slit.</dd>
+<dt><strong><code>possy_A</code></strong> :&ensp;<code>list</code></dt>
+<dd>The y positions of the sources in the A slit.</dd>
+<dt><strong><code>possx_B</code></strong> :&ensp;<code>list</code></dt>
+<dd>The x positions of the sources in the B slit.</dd>
+<dt><strong><code>possy_B</code></strong> :&ensp;<code>list</code></dt>
+<dd>The y positions of the sources in the B slit.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+    &#39;&#39;&#39;
+    Makes a AB setup for the IR ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+    source : NTEpyechelle source
+        The source to simulate.
+
+    possx_A : list
+        The x positions of the sources in the A slit.
+
+    possy_A : list
+        The y positions of the sources in the A slit.
+
+    possx_B : list
+        The x positions of the sources in the B slit.
+
+    possy_B : list
+        The y positions of the sources in the B slit.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    if source == &#39;grb25&#39;:
+        source = self.get_grb25_source()
+    if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+        possx_A = self.Axs
+        possy_A = self.Ays
+        possx_B = self.Bxs
+        possy_B = self.Bys
+    for i in range(len(possx_A)):
+        if not name:
+            slit = self.find_slit(ccd=1)
+            A_name = &#39;ir_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            B_name = &#39;ir_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        else:
+            A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+            B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+        if self.overw:
+            Ax = possx_A[i]
+            Ay = possy_A[i]
+            Bx = possx_B[i]
+            By = possy_B[i]
+            self.point_simulator(ccd=1, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+            self.point_simulator(ccd=1, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+        else:
+            if A_name not in self.files_in_output:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                self.point_simulator(ccd=1, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+            if B_name not in self.files_in_output:
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=1, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_dark"><code class="name flex">
+<span>def <span class="ident">ir_make_dark</span></span>(<span>self, exposure_time=1e-09, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a dark for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_dark(self, exposure_time=0.000000001, name=False):
+    &#39;&#39;&#39;
+    Makes a dark for the IR ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    if not name:
+        slit = self.find_slit(ccd=1)
+        name = &#39;ir_&#39;+str(slit)+&#39;_dark_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_etalon"><code class="name flex">
+<span>def <span class="ident">ir_make_etalon</span></span>(<span>self, exposure_time=6, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a etalon for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_etalon(self, exposure_time=6, name=False):
+    &#39;&#39;&#39;
+    Makes a etalon for the IR ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_etalon_source()
+    if not name:
+        slit = self.find_slit(ccd=1)
+        name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_flat"><code class="name flex">
+<span>def <span class="ident">ir_make_flat</span></span>(<span>self, exposure_time=0.5, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a flat for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_flat(self, exposure_time=0.5, name=False):
+    &#39;&#39;&#39;
+    Makes a flat for the IR ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    if not name:
+        slit = self.find_slit(ccd=1)
+        name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_grb25"><code class="name flex">
+<span>def <span class="ident">ir_make_grb25</span></span>(<span>self, exposure_time=1, name=False, seeing=0.8, posx=0.5, posy=0.5)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a GRB25 for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+<dt><strong><code>seeing</code></strong> :&ensp;<code>float</code></dt>
+<dd>The seeing of the simulation.</dd>
+<dt><strong><code>posx</code></strong> :&ensp;<code>float</code></dt>
+<dd>The x position of the source.</dd>
+<dt><strong><code>posy</code></strong> :&ensp;<code>float</code></dt>
+<dd>The y position of the source.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_grb25(self, exposure_time=1, name=False, seeing=0.8, posx=0.5, posy=0.5):
+    &#39;&#39;&#39;
+    Makes a GRB25 for the IR ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    seeing : float
+        The seeing of the simulation.
+
+    posx : float
+        The x position of the source.
+
+    posy : float
+        The y position of the source.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_grb25_source()
+    if not name:
+        slit = self.find_slit(ccd=1)
+        name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+    if self.overw:
+        self.point_simulator(ccd=1, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+    else:
+        if name not in self.files_in_output:
+            self.point_simulator(ccd=1, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_sky"><code class="name flex">
+<span>def <span class="ident">ir_make_sky</span></span>(<span>self, exposure_time=0.5, name=False, nr=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a sky for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_sky(self, exposure_time=0.5, name=False, nr=1):
+    &#39;&#39;&#39;
+    Makes a sky for the IR ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_sky_source()
+    for i in range(nr):
+        if not name or nr &gt; 1:
+            slit = self.find_slit(ccd=1)
+            name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.ir_make_trace"><code class="name flex">
+<span>def <span class="ident">ir_make_trace</span></span>(<span>self, exposure_time=0.33, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a trace for the IR ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ir_make_trace(self, exposure_time=0.33, name=False):
+    &#39;&#39;&#39;
+    Makes a trace for the IR ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    save_old_fiber = self.fiber
+    self.fiber = 9
+    if not name:
+        slit = self.find_slit(ccd=1)
+        name = &#39;ir_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=1, source=source, name=name, exposure_time=exposure_time)
+    self.fiber = save_old_fiber</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.make_all"><code class="name flex">
+<span>def <span class="ident">make_all</span></span>(<span>self, with_grb25=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes all possible default simulations</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>with_grb25</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If True, it will make the grb25 simulations.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes fits files in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_all(self, with_grb25 = True):
+    &#39;&#39;&#39;
+    Makes all possible default simulations
+
+    Parameters
+    ----------
+    with_grb25 : bool
+        If True, it will make the grb25 simulations.
+
+    Returns
+    -------
+    It makes fits files in the output directory.
+    &#39;&#39;&#39;
+    self.uv_make_bias()
+    self.vis_make_bias()
+    self.ir_make_dark()
+    self.uv_make_flat()
+    self.vis_make_flat()
+    self.ir_make_flat()
+    self.uv_make_HgAr()
+    self.vis_make_HgAr()
+    self.ir_make_HgAr()
+    self.uv_make_etalon()
+    self.vis_make_etalon()
+    self.ir_make_etalon()
+    self.uv_make_trace()
+    self.vis_make_trace()
+    self.ir_make_trace()
+    self.uv_make_sky(nr=5)
+    self.vis_make_sky(nr=5)
+    self.ir_make_sky(nr=5)
+    if with_grb25:
+        self.uv_make_grb25()
+        self.vis_make_grb25()
+        self.ir_make_grb25()
+        self.uv_make_ab()
+        self.vis_make_ab()
+        self.ir_make_ab()</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.make_all_ir"><code class="name flex">
+<span>def <span class="ident">make_all_ir</span></span>(<span>self, with_grb25=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes all possible default simulations for the IR</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>with_grb25</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If True, it will make the grb25 simulations.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes fits files in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_all_ir(self, with_grb25 = True):
+    &#39;&#39;&#39;
+    Makes all possible default simulations for the IR
+    
+    Parameters
+    ----------
+    with_grb25 : bool
+        If True, it will make the grb25 simulations.
+    
+    Returns
+    -------
+    It makes fits files in the output directory.
+    &#39;&#39;&#39;
+    self.ir_make_dark()
+    self.ir_make_flat()
+    self.ir_make_HgAr()
+    self.ir_make_etalon()
+    self.ir_make_trace()
+    self.ir_make_sky(nr=5)
+    if with_grb25:
+        self.ir_make_grb25()
+        self.ir_make_ab()</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.make_all_uv"><code class="name flex">
+<span>def <span class="ident">make_all_uv</span></span>(<span>self, with_grb25=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes all possible default simulations for the UV</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>with_grb25</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If True, it will make the grb25 simulations.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes fits files in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_all_uv(self, with_grb25 = True):
+    &#39;&#39;&#39;
+    Makes all possible default simulations for the UV
+    
+    Parameters
+    ----------
+    with_grb25 : bool
+        If True, it will make the grb25 simulations.
+    
+    Returns
+    -------
+    It makes fits files in the output directory.
+    &#39;&#39;&#39;
+    self.uv_make_bias()
+    self.uv_make_flat()
+    self.uv_make_HgAr()
+    self.uv_make_etalon()
+    self.uv_make_trace()
+    self.uv_make_sky(nr=5)
+    if with_grb25:
+        self.uv_make_grb25()
+        self.uv_make_ab()</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.make_all_vis"><code class="name flex">
+<span>def <span class="ident">make_all_vis</span></span>(<span>self, with_grb25=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes all possible default simulations for the VIS</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>with_grb25</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If True, it will make the grb25 simulations.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes fits files in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_all_vis(self, with_grb25 = True):
+    &#39;&#39;&#39;
+    Makes all possible default simulations for the VIS
+    
+    Parameters
+    ----------
+    with_grb25 : bool
+        If True, it will make the grb25 simulations.
+    
+    Returns
+    -------
+    It makes fits files in the output directory.
+    &#39;&#39;&#39;
+    self.vis_make_bias()
+    self.vis_make_flat()
+    self.vis_make_HgAr()
+    self.vis_make_etalon()
+    self.vis_make_trace()
+    self.vis_make_sky(nr=5)
+    if with_grb25:
+        self.vis_make_grb25()
+        self.vis_make_ab()</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.make_custom"><code class="name flex">
+<span>def <span class="ident">make_custom</span></span>(<span>self, ccd, exposure_time, source, name, point=False, posx=0.5, posy=0.5, seeing=0.8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a simulation for a custom source.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ccd</code></strong> :&ensp;<code>int</code></dt>
+<dd>The ccd to simulate - 1 for IR, 2 for VIS, 3 for UV.</dd>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>CSV</code></dt>
+<dd>The source to simulate.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+<dt><strong><code>point</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If the source is a point source or not.</dd>
+<dt><strong><code>posx</code></strong> :&ensp;<code>float</code></dt>
+<dd>The x position of the source. Only used if point=True.</dd>
+<dt><strong><code>posy</code></strong> :&ensp;<code>float</code></dt>
+<dd>The y position of the source. Only used if point=True.</dd>
+<dt><strong><code>seeing</code></strong> :&ensp;<code>float</code></dt>
+<dd>The seeing of the simulation. Only used if point=True.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_custom(self, ccd, exposure_time, source, name, point=False, posx=0.5, posy=0.5, seeing=0.8):
+    &#39;&#39;&#39;
+    Makes a simulation for a custom source.
+
+    Parameters
+    ----------
+    ccd : int
+        The ccd to simulate - 1 for IR, 2 for VIS, 3 for UV.
+
+    exposure_time : float
+        The exposure time of the simulation.
+
+    source : CSV
+        The source to simulate.
+
+    name : str
+        The name of the file to be saved.
+
+    point : bool
+        If the source is a point source or not.
+    
+    posx : float
+        The x position of the source. Only used if point=True.
+
+    posy : float
+        The y position of the source. Only used if point=True.
+
+    seeing : float
+        The seeing of the simulation. Only used if point=True.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    if self.overw:
+        if point:
+            self.point_simulator(ccd, source, name, exposure_time, posx, posy, seeing)
+        else:
+            self.simulator(ccd, source, name, exposure_time)
+    else:
+        if name not in self.files_in_output:
+            if point:
+                self.point_simulator(ccd, source, name, exposure_time, posx, posy, seeing)
+            else:
+                self.simulator(ccd, source, name, exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.point_simulator"><code class="name flex">
+<span>def <span class="ident">point_simulator</span></span>(<span>self, ccd, source, name, exposure_time, posx, posy, seeing)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes the simulation given the input parameters. Now as a point source.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ccd</code></strong> :&ensp;<code>int</code></dt>
+<dd>1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>NTEpyechelle.sources</code></dt>
+<dd>The source to be simulated.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>posx</code></strong> :&ensp;<code>float</code></dt>
+<dd>The x position of the point source.</dd>
+<dt><strong><code>posy</code></strong> :&ensp;<code>float</code></dt>
+<dd>The y position of the point source.</dd>
+<dt><strong><code>seeing</code></strong> :&ensp;<code>float</code></dt>
+<dd>The seeing of the point source.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def point_simulator(self, ccd, source, name, exposure_time, posx, posy, seeing):
+    &#39;&#39;&#39;
+    Makes the simulation given the input parameters. Now as a point source.
+
+    Parameters
+    ----------
+    ccd : int
+        1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.
+
+    source : NTEpyechelle.sources
+        The source to be simulated.
+
+    name : str
+        The name of the file to be saved.
+
+    exposure_time : float
+        The exposure time of the simulation.
+
+    posx : float
+        The x position of the point source.
+
+    posy : float
+        The y position of the point source.
+
+    seeing : float
+        The seeing of the point source.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    self.check_output_dir()
+    sim = Simulator(ZEMAX(&#39;NTE&#39;))
+    sim.set_ccd(ccd)
+    sim.set_fibers(self.fiber)
+    sim.set_sources(source)
+    sim.set_efficiency(self.efficiency[ccd-1])
+    sim.set_exposure_time(exposure_time)
+    sim.set_point(seeing=seeing, pos=[posx,posy])
+    sim.set_output(self.output_dir + name, overwrite=True)
+    sim.set_cuda(self.gpu)
+    sim.run()</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.simulator"><code class="name flex">
+<span>def <span class="ident">simulator</span></span>(<span>self, ccd, source, name, exposure_time)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes the simulation given the input parameters.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ccd</code></strong> :&ensp;<code>int</code></dt>
+<dd>1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>NTEpyechelle.sources</code></dt>
+<dd>The source to be simulated.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def simulator(self, ccd, source, name, exposure_time):
+    &#39;&#39;&#39;
+    Makes the simulation given the input parameters.
+
+    Parameters
+    ----------
+    ccd : int
+        1, 2 or 3. 1 for IR, 2 for VIS and 3 for UV.
+
+    source : NTEpyechelle.sources
+        The source to be simulated.
+
+    name : str
+        The name of the file to be saved.
+
+    exposure_time : float
+        The exposure time of the simulation.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    self.check_output_dir()
+    sim = Simulator(ZEMAX(&#39;NTE&#39;))
+    sim.set_ccd(ccd)
+    sim.set_fibers(self.fiber)
+    sim.set_sources(source)
+    sim.set_efficiency(self.efficiency[ccd-1])
+    sim.set_exposure_time(exposure_time)
+    sim.set_output(self.output_dir + name, overwrite=True)
+    sim.set_cuda(self.gpu)
+    sim.run()</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_HgAr"><code class="name flex">
+<span>def <span class="ident">uv_make_HgAr</span></span>(<span>self, exposure_time=1, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a HgAr for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_HgAr(self, exposure_time=1, name=False):
+    &#39;&#39;&#39;
+    Makes a HgAr for the UV ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_HgAr_source()
+    if not name:
+        slit = self.find_slit(ccd=3)
+        name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_ab"><code class="name flex">
+<span>def <span class="ident">uv_make_ab</span></span>(<span>self, exposure_time=5, name=False, source='grb25', possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a AB setup for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved. 'A' and 'B' will be added to the name. Also a number to indicate number of simulation.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>NTEpyechelle source</code></dt>
+<dd>The source to simulate.</dd>
+<dt><strong><code>possx_A</code></strong> :&ensp;<code>list</code></dt>
+<dd>The x positions of the sources in the A slit.</dd>
+<dt><strong><code>possy_A</code></strong> :&ensp;<code>list</code></dt>
+<dd>The y positions of the sources in the A slit.</dd>
+<dt><strong><code>possx_B</code></strong> :&ensp;<code>list</code></dt>
+<dd>The x positions of the sources in the B slit.</dd>
+<dt><strong><code>possy_B</code></strong> :&ensp;<code>list</code></dt>
+<dd>The y positions of the sources in the B slit.</dd>
+<dt><strong><code>seeing</code></strong> :&ensp;<code>float</code></dt>
+<dd>The seeing of the simulation.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+    &#39;&#39;&#39;
+    Makes a AB setup for the UV ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+    source : NTEpyechelle source
+        The source to simulate.
+
+    possx_A : list
+        The x positions of the sources in the A slit.
+
+    possy_A : list
+        The y positions of the sources in the A slit.
+
+    possx_B : list
+        The x positions of the sources in the B slit.
+
+    possy_B : list
+        The y positions of the sources in the B slit.
+
+    seeing : float
+        The seeing of the simulation.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    if source == &#39;grb25&#39;:
+        source = self.get_grb25_source()
+    if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+        possx_A = self.Axs
+        possy_A = self.Ays
+        possx_B = self.Bxs
+        possy_B = self.Bys
+    for i in range(len(possx_A)):
+        if not name:
+            slit = self.find_slit(ccd=3)
+            A_name = &#39;uv_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            B_name = &#39;uv_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        else:
+            A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+            B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+        if self.overw:
+            Ax = possx_A[i]
+            Ay = possy_A[i]
+            Bx = possx_B[i]
+            By = possy_B[i]
+            self.point_simulator(ccd=3, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+            self.point_simulator(ccd=3, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+        else:
+            if A_name not in self.files_in_output:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                self.point_simulator(ccd=3, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+            if B_name not in self.files_in_output:
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=3, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_bias"><code class="name flex">
+<span>def <span class="ident">uv_make_bias</span></span>(<span>self, exposure_time=1e-09, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a bias for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_bias(self, exposure_time=0.000000001, name=False):
+    &#39;&#39;&#39;
+    Makes a bias for the UV ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    if not name:
+        slit = self.find_slit(ccd=3)
+        name = &#39;uv_&#39;+str(slit)+&#39;_bias_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_etalon"><code class="name flex">
+<span>def <span class="ident">uv_make_etalon</span></span>(<span>self, exposure_time=18, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a etalon for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_etalon(self, exposure_time=18, name=False):
+    &#39;&#39;&#39;
+    Makes a etalon for the UV ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_etalon_source()
+    if not name:
+        slit = self.find_slit(ccd=3)
+        name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_flat"><code class="name flex">
+<span>def <span class="ident">uv_make_flat</span></span>(<span>self, exposure_time=10, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a flat for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_flat(self, exposure_time=10, name=False):
+    &#39;&#39;&#39;
+    Makes a flat for the UV ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    if not name:
+        slit = self.find_slit(ccd=3)
+        name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_grb25"><code class="name flex">
+<span>def <span class="ident">uv_make_grb25</span></span>(<span>self, exposure_time=5, name=False, seeing=0.8, posx=0.5, posy=0.5)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a GRB25 for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+<dt><strong><code>seeing</code></strong> :&ensp;<code>float</code></dt>
+<dd>The seeing of the simulation.</dd>
+<dt><strong><code>posx</code></strong> :&ensp;<code>float</code></dt>
+<dd>The x position of the source.</dd>
+<dt><strong><code>posy</code></strong> :&ensp;<code>float</code></dt>
+<dd>The y position of the source.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_grb25(self, exposure_time=5, name=False, seeing=0.8, posx=0.5, posy=0.5):
+    &#39;&#39;&#39;
+    Makes a GRB25 for the UV ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    seeing : float
+        The seeing of the simulation.
+
+    posx : float
+        The x position of the source.
+
+    posy : float
+        The y position of the source.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_grb25_source()
+    if not name:
+        slit = self.find_slit(ccd=3)
+        name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+    if self.overw:
+        self.point_simulator(ccd=3, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+    else:
+        if name not in self.files_in_output:
+            self.point_simulator(ccd=3, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_sky"><code class="name flex">
+<span>def <span class="ident">uv_make_sky</span></span>(<span>self, exposure_time=233, name=False, nr=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a sky for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_sky(self, exposure_time=233, name=False, nr=1):
+    &#39;&#39;&#39;
+    Makes a sky for the UV ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_sky_source()
+    for i in range(nr):
+        if not name or nr &gt; 1:
+            slit = self.find_slit(ccd=3)
+            name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)    </code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.uv_make_trace"><code class="name flex">
+<span>def <span class="ident">uv_make_trace</span></span>(<span>self, exposure_time=0.33, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a trace for the UV ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uv_make_trace(self, exposure_time=0.33, name=False):
+    &#39;&#39;&#39;
+    Makes a trace for the UV ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    save_old_fiber = self.fiber
+    self.fiber = 9
+    if not name:
+        slit = self.find_slit(ccd=3)
+        name = &#39;uv_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=3, source=source, name=name, exposure_time=exposure_time)
+    self.fiber = save_old_fiber</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_HgAr"><code class="name flex">
+<span>def <span class="ident">vis_make_HgAr</span></span>(<span>self, exposure_time=1, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a HgAr for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_HgAr(self, exposure_time=1, name=False):
+    &#39;&#39;&#39;
+    Makes a HgAr for the VIS ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_HgAr_source()
+    if not name:
+        slit = self.find_slit(ccd=2)
+        name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_HgAr_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_ab"><code class="name flex">
+<span>def <span class="ident">vis_make_ab</span></span>(<span>self, exposure_time=5, name=False, source='grb25', possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a AB setup for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved. 'A' and 'B' will be added to the name. Also a number to indicate number of simulation.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>NTEpyechelle source</code></dt>
+<dd>The source to simulate.</dd>
+<dt><strong><code>possx_A</code></strong> :&ensp;<code>list</code></dt>
+<dd>The x positions of the sources in the A slit.</dd>
+<dt><strong><code>possy_A</code></strong> :&ensp;<code>list</code></dt>
+<dd>The y positions of the sources in the A slit.</dd>
+<dt><strong><code>possx_B</code></strong> :&ensp;<code>list</code></dt>
+<dd>The x positions of the sources in the B slit.</dd>
+<dt><strong><code>possy_B</code></strong> :&ensp;<code>list</code></dt>
+<dd>The y positions of the sources in the B slit.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_ab(self, exposure_time=5, name=False, source=&#39;grb25&#39;, possx_A=False, possy_A=False, possx_B=False, possy_B=False, seeing=0.8):
+    &#39;&#39;&#39;
+    Makes a AB setup for the VIS ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved. &#39;A&#39; and &#39;B&#39; will be added to the name. Also a number to indicate number of simulation.
+
+    source : NTEpyechelle source
+        The source to simulate.
+
+    possx_A : list
+        The x positions of the sources in the A slit.
+
+    possy_A : list
+        The y positions of the sources in the A slit.
+
+    possx_B : list
+        The x positions of the sources in the B slit.
+
+    possy_B : list
+        The y positions of the sources in the B slit.
+
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    if source == &#39;grb25&#39;:
+        source = self.get_grb25_source()
+    if not np.sum([possx_A, possy_A, possx_B, possy_B]):
+        possx_A = self.Axs
+        possy_A = self.Ays
+        possx_B = self.Bxs
+        possy_B = self.Bys
+    for i in range(len(possx_A)):
+        if not name:
+            slit = self.find_slit(ccd=2)
+            A_name = &#39;vis_&#39;+str(slit)+&#39;_A_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+            B_name = &#39;vis_&#39;+str(slit)+&#39;_B_&#39;+str(i)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+        else:
+            A_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_A_&#39;+str(i)+&#39;.fits&#39;
+            B_name = name.replace(&#39;.fits&#39;, &#39;&#39;)+&#39;_B_&#39;+str(i)+&#39;.fits&#39;
+        if self.overw:
+            Ax = possx_A[i]
+            Ay = possy_A[i]
+            Bx = possx_B[i]
+            By = possy_B[i]
+            self.point_simulator(ccd=2, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+            self.point_simulator(ccd=2, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)
+        else:
+            if A_name not in self.files_in_output:
+                Ax = possx_A[i]
+                Ay = possy_A[i]
+                self.point_simulator(ccd=2, source=source, name=A_name, exposure_time=exposure_time, posx=Ax, posy=Ay, seeing=seeing)
+            if B_name not in self.files_in_output:
+                Bx = possx_B[i]
+                By = possy_B[i]
+                self.point_simulator(ccd=2, source=source, name=B_name, exposure_time=exposure_time, posx=Bx, posy=By, seeing=seeing)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_bias"><code class="name flex">
+<span>def <span class="ident">vis_make_bias</span></span>(<span>self, exposure_time=1e-09, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a bias for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_bias(self, exposure_time=0.000000001, name=False):
+    &#39;&#39;&#39;
+    Makes a bias for the VIS ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    if not name:
+        slit = self.find_slit(ccd=2)
+        name = &#39;vis_&#39;+str(slit)+&#39;_bias_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_etalon"><code class="name flex">
+<span>def <span class="ident">vis_make_etalon</span></span>(<span>self, exposure_time=66, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a etalon for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_etalon(self, exposure_time=66, name=False):
+    &#39;&#39;&#39;
+    Makes a etalon for the VIS ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_etalon_source()
+    if not name:
+        slit = self.find_slit(ccd=2)
+        name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_etalon_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_flat"><code class="name flex">
+<span>def <span class="ident">vis_make_flat</span></span>(<span>self, exposure_time=5, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a flat for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_flat(self, exposure_time=5, name=False):
+    &#39;&#39;&#39;
+    Makes a flat for the VIS ccd.
+
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    if not name:
+        slit = self.find_slit(ccd=2)
+        name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_flat_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_grb25"><code class="name flex">
+<span>def <span class="ident">vis_make_grb25</span></span>(<span>self, exposure_time=3, name=False, seeing=0.8, posx=0.5, posy=0.5)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a GRB25 for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+<dt><strong><code>seeing</code></strong> :&ensp;<code>float</code></dt>
+<dd>The seeing of the simulation.</dd>
+<dt><strong><code>posx</code></strong> :&ensp;<code>float</code></dt>
+<dd>The x position of the source.</dd>
+<dt><strong><code>posy</code></strong> :&ensp;<code>float</code></dt>
+<dd>The y position of the source.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_grb25(self, exposure_time=3, name=False, seeing=0.8, posx=0.5, posy=0.5):
+    &#39;&#39;&#39;
+    Makes a GRB25 for the VIS ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+
+    seeing : float
+        The seeing of the simulation.
+
+    posx : float
+        The x position of the source.
+
+    posy : float
+        The y position of the source.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_grb25_source()
+    if not name:
+        slit = self.find_slit(ccd=2)
+        name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_grb25_schem.fits&#39;
+    if self.overw:
+        self.point_simulator(ccd=2, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)
+    else:
+        if name not in self.files_in_output:
+            self.point_simulator(ccd=2, source=source, name=name, exposure_time=exposure_time, posx=posx, posy=posy, seeing=seeing)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_sky"><code class="name flex">
+<span>def <span class="ident">vis_make_sky</span></span>(<span>self, exposure_time=3, name=False, nr=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a sky for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_sky(self, exposure_time=3, name=False, nr=1):
+    &#39;&#39;&#39;
+    Makes a sky for the VIS ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = self.get_sky_source()
+    for i in range(nr):
+        if not name or nr &gt; 1:
+            slit = self.find_slit(ccd=2)
+            name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_&#39;+str(i)+&#39;_sky_schem.fits&#39;
+        if self.overw:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+        else:
+            if name not in self.files_in_output:
+                self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)</code></pre>
+</details>
+</dd>
+<dt id="NTEsim.make_schematics.MakeSchematics.vis_make_trace"><code class="name flex">
+<span>def <span class="ident">vis_make_trace</span></span>(<span>self, exposure_time=0.33, name=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a trace for the VIS ccd.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>exposure_time</code></strong> :&ensp;<code>float</code></dt>
+<dd>The exposure time of the simulation.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to be saved.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>It makes a fits file in the output directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vis_make_trace(self, exposure_time=0.33, name=False):
+    &#39;&#39;&#39;
+    Makes a trace for the VIS ccd.
+    
+    Parameters
+    ----------
+    exposure_time : float
+        The exposure time of the simulation.
+
+    name : str
+        The name of the file to be saved.
+    
+    Returns
+    -------
+    It makes a fits file in the output directory.
+    &#39;&#39;&#39;
+    source = Constant()
+    save_old_fiber = self.fiber
+    self.fiber = 9
+    if not name:
+        slit = self.find_slit(ccd=2)
+        name = &#39;vis_&#39;+str(slit)+&#39;_&#39;+str(exposure_time)+&#39;sec&#39;+&#39;_trace_schem.fits&#39;
+    if self.overw:
+        self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+    else:
+        if name not in self.files_in_output:
+            self.simulator(ccd=2, source=source, name=name, exposure_time=exposure_time)
+    self.fiber = save_old_fiber</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="NTEsim" href="index.html">NTEsim</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="NTEsim.make_schematics.MakeSchematics" href="#NTEsim.make_schematics.MakeSchematics">MakeSchematics</a></code></h4>
+<ul class="two-column">
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.check_output_dir" href="#NTEsim.make_schematics.MakeSchematics.check_output_dir">check_output_dir</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.find_slit" href="#NTEsim.make_schematics.MakeSchematics.find_slit">find_slit</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.get_HgAr_source" href="#NTEsim.make_schematics.MakeSchematics.get_HgAr_source">get_HgAr_source</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.get_etalon_source" href="#NTEsim.make_schematics.MakeSchematics.get_etalon_source">get_etalon_source</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.get_grb25_source" href="#NTEsim.make_schematics.MakeSchematics.get_grb25_source">get_grb25_source</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.get_sky_source" href="#NTEsim.make_schematics.MakeSchematics.get_sky_source">get_sky_source</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_HgAr" href="#NTEsim.make_schematics.MakeSchematics.ir_make_HgAr">ir_make_HgAr</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_ab" href="#NTEsim.make_schematics.MakeSchematics.ir_make_ab">ir_make_ab</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_dark" href="#NTEsim.make_schematics.MakeSchematics.ir_make_dark">ir_make_dark</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_etalon" href="#NTEsim.make_schematics.MakeSchematics.ir_make_etalon">ir_make_etalon</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_flat" href="#NTEsim.make_schematics.MakeSchematics.ir_make_flat">ir_make_flat</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_grb25" href="#NTEsim.make_schematics.MakeSchematics.ir_make_grb25">ir_make_grb25</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_sky" href="#NTEsim.make_schematics.MakeSchematics.ir_make_sky">ir_make_sky</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.ir_make_trace" href="#NTEsim.make_schematics.MakeSchematics.ir_make_trace">ir_make_trace</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.make_all" href="#NTEsim.make_schematics.MakeSchematics.make_all">make_all</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.make_all_ir" href="#NTEsim.make_schematics.MakeSchematics.make_all_ir">make_all_ir</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.make_all_uv" href="#NTEsim.make_schematics.MakeSchematics.make_all_uv">make_all_uv</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.make_all_vis" href="#NTEsim.make_schematics.MakeSchematics.make_all_vis">make_all_vis</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.make_custom" href="#NTEsim.make_schematics.MakeSchematics.make_custom">make_custom</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.point_simulator" href="#NTEsim.make_schematics.MakeSchematics.point_simulator">point_simulator</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.simulator" href="#NTEsim.make_schematics.MakeSchematics.simulator">simulator</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_HgAr" href="#NTEsim.make_schematics.MakeSchematics.uv_make_HgAr">uv_make_HgAr</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_ab" href="#NTEsim.make_schematics.MakeSchematics.uv_make_ab">uv_make_ab</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_bias" href="#NTEsim.make_schematics.MakeSchematics.uv_make_bias">uv_make_bias</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_etalon" href="#NTEsim.make_schematics.MakeSchematics.uv_make_etalon">uv_make_etalon</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_flat" href="#NTEsim.make_schematics.MakeSchematics.uv_make_flat">uv_make_flat</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_grb25" href="#NTEsim.make_schematics.MakeSchematics.uv_make_grb25">uv_make_grb25</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_sky" href="#NTEsim.make_schematics.MakeSchematics.uv_make_sky">uv_make_sky</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.uv_make_trace" href="#NTEsim.make_schematics.MakeSchematics.uv_make_trace">uv_make_trace</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_HgAr" href="#NTEsim.make_schematics.MakeSchematics.vis_make_HgAr">vis_make_HgAr</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_ab" href="#NTEsim.make_schematics.MakeSchematics.vis_make_ab">vis_make_ab</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_bias" href="#NTEsim.make_schematics.MakeSchematics.vis_make_bias">vis_make_bias</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_etalon" href="#NTEsim.make_schematics.MakeSchematics.vis_make_etalon">vis_make_etalon</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_flat" href="#NTEsim.make_schematics.MakeSchematics.vis_make_flat">vis_make_flat</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_grb25" href="#NTEsim.make_schematics.MakeSchematics.vis_make_grb25">vis_make_grb25</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_sky" href="#NTEsim.make_schematics.MakeSchematics.vis_make_sky">vis_make_sky</a></code></li>
+<li><code><a title="NTEsim.make_schematics.MakeSchematics.vis_make_trace" href="#NTEsim.make_schematics.MakeSchematics.vis_make_trace">vis_make_trace</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

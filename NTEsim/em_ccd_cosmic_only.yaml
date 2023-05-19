@@ -1,0 +1,102 @@
+# ########################################################### #
+# Pyxel detector simulation framework                         #
+#                                                             #
+# Example YAML configuration file                             #                        
+# ########################################################### #
+
+
+# yaml-language-server: $schema=https://esa.gitlab.io/pyxel/doc/latest/pyxel_schema.json
+exposure:
+
+  readout:
+    times: [2]
+    non_destructive:  false
+    
+  outputs:
+    output_folder: "Output/Pyxel_runs"
+    save_data_to_file:
+      
+ccd_detector:
+
+  geometry:
+
+    row: 1024              
+    col: 1024
+    total_thickness: 40.    # um
+    pixel_vert_size: 10.    # um
+    pixel_horz_size: 10.    # um
+
+  environment:
+    temperature: 80  
+
+  characteristics:
+    quantum_efficiency: 1      
+    charge_to_volt_conversion: 1.0e-6     
+    pre_amplification: 1.          
+    adc_voltage_range: [0., 10.]
+    adc_bit_resolution: 16
+    full_well_capacity: 100000    
+
+pipeline:
+  # -> photon
+  photon_collection:
+    - name: load_image
+      func: pyxel.models.photon_collection.load_image
+      enabled: true
+      arguments:
+        image_file: "NTEsim/uv_pyxel_im.fits"
+        align: "center"
+
+  # photon -> charge
+  charge_generation:
+        
+    - name: cosmix
+      func: pyxel.models.charge_generation.cosmix
+      enabled: true
+      arguments:
+        simulation_mode: cosmic_ray
+        running_mode: stepsize
+        particle_type: proton
+        initial_energy: 0.1          # MeV
+        particles_per_second: 3
+        incident_angles:
+        starting_position:
+        spectrum_file: 'NTEsim/proton_L2_solarMax_11mm_Shielding.txt'
+        progressbar: true
+
+  # charge -> pixel
+  charge_collection:
+    - name: simple_collection
+      func: pyxel.models.charge_collection.simple_collection
+      enabled: true
+      
+    - name: full_well
+      func: pyxel.models.charge_collection.simple_full_well
+      enabled: true
+      
+  # pixel -> pixel
+  charge_transfer:
+
+  # pixel -> signal
+  charge_measurement:
+  
+    - name: dc_offset
+      func: pyxel.models.charge_measurement.dc_offset
+      enabled: true
+      arguments:
+        offset: 0.5
+        
+    - name: simple_measurement
+      func: pyxel.models.charge_measurement.simple_measurement
+      enabled: true
+      
+  # signal -> image
+  readout_electronics:
+  
+    - name: simple_amplifier
+      func: pyxel.models.readout_electronics.simple_amplifier
+      enabled: true  
+  
+    - name: simple_adc
+      func: pyxel.models.readout_electronics.simple_adc
+      enabled: true
